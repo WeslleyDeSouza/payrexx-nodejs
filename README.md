@@ -9,7 +9,7 @@ Payrexx NodeJS/TS API Wrapper
 
 ## 🔨 Usage
 
-####INIT
+#### INIT
 <code>
 let PAYR = new PayRexx(_instance,_secret);
 </code>
