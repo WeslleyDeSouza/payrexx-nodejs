@@ -1,2 +1,2 @@
-# payrexx-nodejs
+# Payrexx NodeJS
 Payrexx NodeJs API Wrapper
