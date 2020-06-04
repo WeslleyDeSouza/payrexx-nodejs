@@ -2,19 +2,19 @@
 Payrexx NodeJS/TS API Wrapper
 
 
-# 📦 Installation
+## 📦 Installation
 <code>
 
 </code>
 
-###🔨 Usage
+## 🔨 Usage
 
 ####INIT
 <code>
 let PAYR = new PayRexx(_instance,_secret);
 </code>
 
-####Payments
+#### Payments
 <code>
 - get
 - delete
@@ -36,4 +36,4 @@ let id = await PAYR.payment.create({
        
 </code>
 
-####Gateway
+#### Gateway
