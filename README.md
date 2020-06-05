@@ -9,12 +9,7 @@ Payrexx NodeJS/TS API Wrapper
 
 ## 🔨 Implemented
 
-#### INIT
-<code>
-let PAYR = new PayRexx(_instance,_secret);  
-</code>
-
-
+#### Signature
 -checkSignature ✔️
 
 
