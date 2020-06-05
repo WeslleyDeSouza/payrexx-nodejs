@@ -1,12 +1,11 @@
-import {SubscriptionsActions} from "./actions/payrexx.actions.subscriptions";
-
 const axios     = require('axios');
-import {IPayRex} from "./types";
 
+import {IPayRex} from "./types";
 import {AuthHelper} from "./auth/payrexx.auth";
 
 import {PaymentActions} from "./actions/payrexx.actions.payment";
 import {GatewayActions} from "./actions/payrexx.actions.gateway";
+import {SubscriptionsActions} from "./actions/payrexx.actions.subscriptions";
 
 export class PayRexx implements IPayRex{
 
