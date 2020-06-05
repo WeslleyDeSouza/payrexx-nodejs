@@ -1,25 +1,21 @@
 /**
- *
+ * Gulp
  */
 'use strict';
 
 let gulp = require('gulp');
 let ts   = require('gulp-typescript');
-var art = require('ascii-art');
+
 
 let serverTsProject = ts.createProject('tsconfig.json');
 
 //---------------------------------------------------Functions
 const startMessage = () =>{
-	art.font('Wait for IT', 'Doom', function(rendered){
-		console.log(art.style(rendered, ''));
-		console.log('Running GULP...')
-	});
+	console.log('Running GULP...')
 }
 
 //---------------------------------------------------TASKS
 gulp.task("default", function () {
-
 	startMessage();
 	return serverTsProject.src()
 		.pipe(serverTsProject())
@@ -28,10 +24,7 @@ gulp.task("default", function () {
 
 gulp.task("prod", function () {
 
-	//startMessage();
-
-	for(let folder of ['driveAPI'])
-		gulp.src('./'+folder+'/ts/**/!(*.ts|*.js|)').pipe(gulp.dest('./dist/'+folder));
+	//for(let folder of ['']) gulp.src('./'+folder+'/ts/**/!(*.ts|*.js|)').pipe(gulp.dest('./dist/'+folder));
 
 	return serverTsProject.src()
 		  .pipe(serverTsProject())
@@ -39,6 +32,6 @@ gulp.task("prod", function () {
 });
 
 gulp.task('watch', () => {
-	gulp.watch('./**/*.ts', [ 'serverscripts' ]);
+	gulp.watch('./**/*.ts', [ 'default' ]);
 });
 
