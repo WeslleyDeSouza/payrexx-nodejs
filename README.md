@@ -14,6 +14,7 @@ Payrexx NodeJS/TS API Wrapper
 let PAYR = new PayRexx(_instance,_secret);  
 </code>
 
+
 -checkSignature ✔️
 
 
