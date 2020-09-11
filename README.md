@@ -7,6 +7,11 @@ Payrexx NodeJS/TS API Wrapper
 
 </code>
 
+## 🔁 Transplite to JS
+<code>
+ gulp prod
+</code>
+
 ## 🔨 Implemented
 
 #### Signature
