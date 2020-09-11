@@ -30,10 +30,10 @@ Payrexx NodeJS/TS API Wrapper
 
 
 #### Transactions
-- get     
-- charge  
-- refund 
-- create  
+- get     🔨
+- charge  🔨
+- refund  🔨
+- create  🔨
 
 #### Documentation
 For further information, please refer to the official REST API reference: https://developers.payrexx.com/v1.0/reference
