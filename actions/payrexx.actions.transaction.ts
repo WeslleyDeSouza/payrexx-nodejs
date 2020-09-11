@@ -7,7 +7,7 @@ const qs    = require('qs');
 /**
  * This class represents all Transactions Actions
  * https://developers.payrexx.com/reference#transaction
- * Not tested yed
+ * Not tested yet
  * @2020 Weslley De Souza
  * */
 export class TransactionActions extends PayrexxActions{
