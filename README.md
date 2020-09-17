@@ -7,7 +7,7 @@ Payrexx NodeJS/TS API Wrapper
 
 </code>
 
-## 🔁 Transplite to JS
+## 🔁 Transpile TS to JS
 <code>
  gulp prod
 </code>
