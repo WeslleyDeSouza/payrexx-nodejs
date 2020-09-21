@@ -4,7 +4,7 @@ Payrexx NodeJS/TS API Wrapper
 
 ## 📦 Installation
 <code>
-
+   NPM: npm i --save payrexx@latest --production
 </code>
 
 ## 🔁 Transpile TS to JS
