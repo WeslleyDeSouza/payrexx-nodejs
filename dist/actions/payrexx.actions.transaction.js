@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const payrexx_actions_1 = require("./payrexx.actions");
-const axios = require('axios');
-const qs = require('qs');
+const qs_1 = require("qs");
+const axios_1 = require("axios");
 /**
  * This class represents all Transactions Actions
  * https://developers.payrexx.com/reference#transaction
@@ -18,7 +18,7 @@ class TransactionActions extends payrexx_actions_1.PayrexxActions {
     get(id, single = true) {
         let params = {};
         params['ApiSignature'] = this.rex.auth.buildSignature('');
-        return axios.get(this.getEndPoint(`${single ? id : ''}/`) + '&' + qs.stringify(params))
+        return axios_1.default.get(this.getEndPoint(`${single ? id : ''}/`) + '&' + qs_1.default.stringify(params))
             .then(response => this.successHandler(response, 'get'))
             .catch(err => this.errorHandler(err));
     }
@@ -27,28 +27,28 @@ class TransactionActions extends payrexx_actions_1.PayrexxActions {
     }
     capture(id, params = {}) {
         params['ApiSignature'] = this.rex.auth.buildSignature('');
-        return axios.post(this.getEndPoint(`${id}/capture`), { data: qs.stringify(params) })
+        return axios_1.default.post(this.getEndPoint(`${id}/capture`), { data: qs_1.default.stringify(params) })
             .then(response => this.successHandler(response, 'create'))
             .catch(err => this.errorHandler(err));
     }
     charge(id, params = {}) {
-        let data = qs.stringify(params);
+        let data = qs_1.default.stringify(params);
         params.ApiSignature = this.rex.auth.buildSignature(data);
-        data = qs.stringify(params);
-        return axios.post(this.getEndPoint(), data)
+        data = qs_1.default.stringify(params);
+        return axios_1.default.post(this.getEndPoint(), data)
             .then(response => this.successHandler(response, 'create'))
             .catch(err => this.errorHandler(err));
     }
     refund(id, params = {}) {
         params['ApiSignature'] = this.rex.auth.buildSignature('');
-        return axios.post(this.getEndPoint(`${id}/refund`), { data: qs.stringify(params) })
+        return axios_1.default.post(this.getEndPoint(`${id}/refund`), { data: qs_1.default.stringify(params) })
             .then(response => this.successHandler(response, 'create'))
             .catch(err => this.errorHandler(err));
     }
     delete(id) {
         let params = {};
         params['ApiSignature'] = this.rex.auth.buildSignature('');
-        return axios.delete(this.getEndPoint(`${id}/capture`), { data: qs.stringify(params) })
+        return axios_1.default.delete(this.getEndPoint(`${id}/capture`), { data: qs_1.default.stringify(params) })
             .then(response => this.successHandler(response, 'delete'))
             .catch(err => this.errorHandler(err));
     }

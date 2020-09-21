@@ -1,6 +1,7 @@
 import {SubscriptionsActions} from "./actions/payrexx.actions.subscriptions";
 
-const axios     = require('axios');
+
+import axios from "axios";
 import {IPayRex} from "./types";
 
 import {AuthHelper} from "./auth/payrexx.auth";
@@ -56,5 +57,3 @@ export class PayRexx implements IPayRex{
     }
 
 }
-
-export default paxrexx  = PayRexx

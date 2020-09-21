@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const Base64 = require('crypto-js/enc-base64');
-const hmacSHA256 = require('crypto-js/hmac-sha256');
+const enc_base64_1 = require("crypto-js/enc-base64");
+const enc_base64_2 = require("crypto-js/enc-base64");
 /**
  * Auth helper class
  * @Weslley De Souza 2020
@@ -18,7 +18,7 @@ class AuthHelper {
         };
     }
     buildSignature(query, secret = this._secret, digTo = 'base64') {
-        return Base64.stringify(hmacSHA256(query, secret));
+        return enc_base64_1.default.stringify(enc_base64_2.default(query, secret));
     }
     buildUrl(json, qUri = '', escape = false) {
         for (const key in json) {

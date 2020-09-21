@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const payrexx_actions_subscriptions_1 = require("./actions/payrexx.actions.subscriptions");
-const axios = require('axios');
+const axios_1 = require("axios");
 const payrexx_auth_1 = require("./auth/payrexx.auth");
 const payrexx_actions_payment_1 = require("./actions/payrexx.actions.payment");
 const payrexx_actions_gateway_1 = require("./actions/payrexx.actions.gateway");
@@ -36,10 +36,9 @@ class PayRexx {
         let queryParams = {};
         queryParams.instance = this._instance;
         queryParams.ApiSignature = this.auth.buildSignature('', this._secret);
-        return axios.get(this.getEndPoint() + 'SignatureCheck/?' + this.auth.buildUrl(queryParams), {})
+        return axios_1.default.get(this.getEndPoint() + 'SignatureCheck/?' + this.auth.buildUrl(queryParams), {})
             .then(result => (result.data.status))
             .catch(err => console.log(err));
     }
 }
 exports.PayRexx = PayRexx;
-exports.default = paxrexx = PayRexx;
