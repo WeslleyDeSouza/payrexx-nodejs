@@ -6,6 +6,9 @@ const payrexx_auth_1 = require("./auth/payrexx.auth");
 const payrexx_actions_payment_1 = require("./actions/payrexx.actions.payment");
 const payrexx_actions_gateway_1 = require("./actions/payrexx.actions.gateway");
 class PayRexx {
+    // _instance:	The Payrexx instance name
+    // _secret: 	The Payrexx api secret
+    // _v:          REST API Version
     constructor(_instance, _secret, _v = 'v1.0') {
         this._instance = _instance;
         this._secret = _secret;
@@ -39,3 +42,4 @@ class PayRexx {
     }
 }
 exports.PayRexx = PayRexx;
+exports.default = paxrexx = PayRexx;

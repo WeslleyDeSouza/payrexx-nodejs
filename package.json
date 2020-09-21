@@ -1,8 +1,8 @@
 {
   "name": "payrexx",
-  "version": "0.0.1",
-  "description": "",
-  "main": "index.ts",
+  "version": "0.1.5",
+  "description": "Payrexx JS SDK",
+  "main": "/dist.index.js",
   "dependencies": {
     "axios": "^0.19.2",
     "crypto-js": "^4.0.0",
@@ -10,21 +10,28 @@
     "request": "^2.88.2"
   },
   "devDependencies": {
-    "@types/node": "^13.7.4",
-    "ascii-art": "^2.5.0",
-    "browser-sync": "^2.18.2",
-    "del": "^3.0.0",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-typescript": "^3.2.3",
     "gulp-uglify": "^3.0.0",
-    "gulp-wait": "0.0.2",
-    "run-sequence": "^2.2.0",
     "typescript": "^2.7.0-dev.20171222"
   },
   "scripts": {
     "start": "gulp && node dist/index.js",
     "node": "node dist/index.js"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Weslley De Souza",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WeslleyDeSouza/payrexx-nodejs.git"
+  },
+  "keywords": [
+    "payrexx",
+    "sdk",
+    "payrexx sdk"
+  ],
+  "bugs": {
+    "url": "https://github.com/WeslleyDeSouza/payrexx-nodejs/issues"
+  },
+  "homepage": "https://github.com/WeslleyDeSouza/payrexx-nodejs#readme"
 }

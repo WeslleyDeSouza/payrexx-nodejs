@@ -1,27 +1,34 @@
-const axios     = require('axios');
+import {SubscriptionsActions} from "./actions/payrexx.actions.subscriptions";
 
+const axios     = require('axios');
 import {IPayRex} from "./types";
+
 import {AuthHelper} from "./auth/payrexx.auth";
 
 import {PaymentActions} from "./actions/payrexx.actions.payment";
 import {GatewayActions} from "./actions/payrexx.actions.gateway";
-import {SubscriptionsActions} from "./actions/payrexx.actions.subscriptions";
 
 export class PayRexx implements IPayRex{
 
-    private endPoint;
+    // URL Endpoint holder | Example: https://api.payrexx.com/
+    private endPoint:string;
 
-    public auth:AuthHelper        = new AuthHelper(this._instance,this._secret);
+    public auth:AuthHelper                    = new AuthHelper(this._instance,this._secret);
 
     /**
      * actions
      * */
     public payment:PaymentActions             = new PaymentActions(this);
+
     public gateway:GatewayActions             = new GatewayActions(this);
+
     public subscriptions:SubscriptionsActions = new SubscriptionsActions(this);
 
 
-    constructor(private _instance,private _secret,private _v = 'v1.0'){
+    // _instance:	The Payrexx instance name
+    // _secret: 	The Payrexx api secret
+    // _v:          REST API Version
+    constructor(private _instance:string,private _secret:string,private _v = 'v1.0'){
         this.endPoint = `https://api.payrexx.com/${_v}/`;
     }
 
@@ -50,6 +57,4 @@ export class PayRexx implements IPayRex{
 
 }
 
-
-
-
+export default paxrexx  = PayRexx
