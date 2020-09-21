@@ -156,3 +156,5 @@ export interface ISubscription {
 
     ApiSignature?:any
 }
+
+declare var require: any

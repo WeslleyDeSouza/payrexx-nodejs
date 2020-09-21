@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.PayrexxActions = void 0;
 class PayrexxActions {
     successHandler(response, typ = null) {
         if (typ == 'create')

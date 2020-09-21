@@ -1,74 +1,11 @@
-import {IPayRex} from "../types";
+import {IGatewayCreate, IPayRex} from "../types";
 import {PayrexxActions} from "./payrexx.actions";
-const axios = require('axios');
-const qs    = require('qs');
-
-interface IGatewayCreate {
-    amount:number
-    //Amount of payment in cents.
-
-    vatRate?:number
-    //VAT Rate Percentage
-
-    currency: string
-    //Currency of payment (ISO code).
-
-    sku?:string
-    //Product stock keeping unit
-
-    purpose?:string
-    //The purpose of the payment.
-
-    successRedirectUrl?:string
-
-    //URL to redirect to after successful payment.
-
-    failedRedirectUrl?:string
-    //URL to redirect to after failed payment.
-
-    cancelRedirectUrl?:string
-    //URL to redirect to after manual cancellation by shopper.
-
-    psp?:number[];
-    //List of PSPs to provide for payment. If empty all available PSPs are provied.
+var qs = require('qs');
+var axios = require('axios');
 
 
-    pm?:string[];
-    //List of payment mean names to display
 
 
-    preAuthorization?:boolean
-    //Whether charge payment manually at a later date (type authorization)
-
-    chargeOnAuthorization?:boolean
-    //preAuthorization needs to be "true". This will charge the authorization during the first payment.
-
-    reservation?:any
-    //Whether charge payment manually at a later date (type reservation)
-
-    referenceId?:string
-    //An internal reference id used by your system.
-
-    fields?:string
-    //The contact data fields which should be stored along with payment
-
-    concardisOrderId?:string
-    //Only available for Concardis PSP and if the custom ORDERID option is activated in PSP settings in Payrexx administration. This ORDERID will be transferred to the Payengine.
-
-    skipResultPage?:string
-    //Skip result page and directly redirect to success or failed URL
-
-    validity?:number
-    //Gateway validity in minutes.
-
-    buttonText?:string
-    //Custom pay button text.
-
-    successMessage?:string
-    //Custom success message on result page.
-
-    ApiSignature?:any
-}
 
 /**
  * This class represents all Gateway Actions
@@ -120,5 +57,3 @@ export class GatewayActions extends PayrexxActions{
     }
 
 }
-
-

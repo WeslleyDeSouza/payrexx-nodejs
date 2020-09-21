@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.PayRexx = void 0;
 const payrexx_actions_subscriptions_1 = require("./actions/payrexx.actions.subscriptions");
 const axios_1 = require("axios");
 const payrexx_auth_1 = require("./auth/payrexx.auth");

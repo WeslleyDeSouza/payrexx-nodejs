@@ -3,9 +3,10 @@ import {AxiosError, AxiosResponse} from "axios";
 export abstract class PayrexxActions {
 
     abstract get(id:number)
-    abstract create(params:any)
-    abstract delete(id:number)
 
+    abstract create(params:any)
+
+    abstract delete(id:number)
 
     protected successHandler(response:AxiosResponse,typ:'get'|'create'|'delete' = null){
         if(typ == 'create')

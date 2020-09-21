@@ -1,8 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.GatewayActions = void 0;
 const payrexx_actions_1 = require("./payrexx.actions");
-const qs_1 = require("qs");
-const axios_1 = require("axios");
+var qs = require('qs');
+var axios = require('axios');
 /**
  * This class represents all Gateway Actions
  * https://developers.payrexx.com/reference#gateway
@@ -17,7 +18,7 @@ class GatewayActions extends payrexx_actions_1.PayrexxActions {
     get(id) {
         let params = {};
         params['ApiSignature'] = this.rex.auth.buildSignature('');
-        return axios_1.default.get(this.getEndPoint(`${id}/`) + '&' + qs_1.default.stringify(params))
+        return axios.get(this.getEndPoint(`${id}/`) + '&' + qs.stringify(params))
             .then(response => this.successHandler(response, 'get'))
             .catch(err => this.errorHandler(err));
     }
@@ -25,17 +26,17 @@ class GatewayActions extends payrexx_actions_1.PayrexxActions {
         if (!params.amount) {
             throw new Error('Amount required!');
         }
-        let data = qs_1.default.stringify(params);
+        let data = qs.stringify(params);
         params.ApiSignature = this.rex.auth.buildSignature(data);
-        data = qs_1.default.stringify(params);
-        return axios_1.default.post(this.getEndPoint(), data)
+        data = qs.stringify(params);
+        return axios.post(this.getEndPoint(), data)
             .then(response => this.successHandler(response, 'create'))
             .catch(err => this.errorHandler(err));
     }
     delete(id) {
         let params = {};
         params['ApiSignature'] = this.rex.auth.buildSignature('');
-        return axios_1.default.delete(this.getEndPoint(`${id}/`), { data: qs_1.default.stringify(params) })
+        return axios.delete(this.getEndPoint(`${id}/`), { data: qs.stringify(params) })
             .then(response => this.successHandler(response, 'delete'))
             .catch(err => this.errorHandler(err));
     }

@@ -22,10 +22,16 @@ gulp.task("default", function () {
 		 .js.pipe(gulp.dest("./dist"));
 });
 
+gulp.task("default", function () {
+	startMessage();
+	return serverTsProject.src()
+		.pipe(serverTsProject())
+		.js.pipe(gulp.dest("./dist"));
+});
+
 gulp.task("prod", function () {
 
 	//for(let folder of ['']) gulp.src('./'+folder+'/ts/**/!(*.ts|*.js|)').pipe(gulp.dest('./dist/'+folder));
-
 	return serverTsProject.src()
 		  .pipe(serverTsProject())
 	    	.js.pipe(gulp.dest("./dist"));

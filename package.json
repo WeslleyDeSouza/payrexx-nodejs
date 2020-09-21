@@ -1,19 +1,20 @@
 {
   "name": "payrexx",
-  "version": "0.1.8",
+  "version": "0.2.2",
   "description": "Payrexx JS SDK",
-  "main": "/dist/index.js",
+  "main": "./dist/index.js",
   "dependencies": {
     "axios": "^0.19.2",
     "crypto-js": "^4.0.0",
     "qs": "^6.9.4",
     "request": "^2.88.2"
   },
-  "devDependencies": {
+    "devDependencies": {
     "gulp": "^4.0.2",
     "gulp-typescript": "^3.2.3",
     "gulp-uglify": "^3.0.0",
-    "typescript": "^2.7.0-dev.20171222"
+    "typescript": "^3.2.1",
+    "@types/node": "^14.11.1"
   },
   "scripts": {
     "start": "gulp && node dist/index.js",

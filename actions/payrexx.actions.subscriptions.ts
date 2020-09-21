@@ -1,39 +1,10 @@
-import {IPayRex} from "../types";
+import {IPayRex, ISubscription} from "../types";
 import {PayrexxActions} from "./payrexx.actions";
-const axios = require('axios');
-const qs    = require('qs');
+
+var qs = require('qs');
+var axios = require('axios');
 
 
-interface ISubscription {
-    userId:string
-    //The contact id you got from webhook.
-
-    psp:string
-    //The ID of the psp to use.
-
-    amount:string
-    //The amount of the payment to fire in cents.
-
-    currency:string
-    //The ISO code of the currency of the payment.
-
-    purpose:string
-    //The payment purpose. What is the payer paying for?
-
-    paymentInterval:string
-    //The payment interval as string. (see PHP documentation of date interval for format)
-
-    period:string
-    //The subscription's period as string. (see PHP documentation of date interval for format)
-
-    cancellationInterval:string
-    //The interval of cancellation as string. (see PHP documentation of date interval for format)
-
-    referenceId?:string
-    //The internal reference id. (Will be sent back with Webhook, can be used as identification)
-
-    ApiSignature?:any
-}
 
 /**
  * This class represents all Subscriptions Actions

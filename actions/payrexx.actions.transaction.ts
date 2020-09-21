@@ -1,13 +1,14 @@
 import {IPayRex} from "../types";
 import {PayrexxActions} from "./payrexx.actions";
-const axios = require('axios');
-const qs    = require('qs');
+
+var qs = require('qs');
+var axios = require('axios');
 
 
 /**
  * This class represents all Transactions Actions
  * https://developers.payrexx.com/reference#transaction
- * Not tested yet
+ * Not tested yed
  * @2020 Weslley De Souza
  * */
 export class TransactionActions extends PayrexxActions{
