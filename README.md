@@ -1,6 +1,6 @@
 # Payrexx NodeJS SDK
 Payrexx NodeJS/TS API Wrapper
-
+https://github.com/WeslleyDeSouza/payrexx-nodejs
 
 ## 📦 Installation
 <code>
