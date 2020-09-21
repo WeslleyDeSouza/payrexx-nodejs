@@ -4,7 +4,7 @@ https://github.com/WeslleyDeSouza/payrexx-nodejs
 
 ## 📦 Installation
 <code>
-   NPM: npm i --save payrexx@latest --production
+   NPM: npm i --save payrexx@production
 </code>
 
 ## 🔁 Transpile TS to JS
