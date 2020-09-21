@@ -6,7 +6,7 @@ import {PayRexx} from "../index";
     let PAYR = new PayRexx( auth.instance, auth.secret);
 
     const payment = await PAYR.payment.create({
-        "title":       "Product XY-123",
+        "title":       "ABO 123",
         "description": "test",
         "psp":             1,
         "referenceId": "test",
