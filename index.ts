@@ -1,6 +1,3 @@
-import {SubscriptionsActions} from "./actions/payrexx.actions.subscriptions";
-
-
 import axios from "axios";
 import {IPayRex} from "./types";
 
@@ -8,6 +5,7 @@ import {AuthHelper} from "./auth/payrexx.auth";
 
 import {PaymentActions} from "./actions/payrexx.actions.payment";
 import {GatewayActions} from "./actions/payrexx.actions.gateway";
+import {SubscriptionsActions} from "./actions/payrexx.actions.subscriptions";
 
 export class PayRexx implements IPayRex{
 
@@ -42,7 +40,6 @@ export class PayRexx implements IPayRex{
 
     /*
 * This endpoint can be used to verify the INSTANCE_API_SECRET to be correct.
-* In case it is not correct, you get log of the error status.
 * */
     checkSignature():Promise<boolean>{
 
