@@ -51,8 +51,8 @@ For further information, please refer to the official REST API reference: https:
        let PAYR = new PayRexx( auth.instance, auth.secret);
    
        const payment = await PAYR.payment.create({
-           "title":       "Item 423",
-           "description": "test",
+           "title":       "Item_423",
+           "description": "PaymentCreationTest",
            "psp":             1,
            "referenceId": "test",
            "purpose":     "test",
