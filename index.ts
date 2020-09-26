@@ -1,13 +1,13 @@
 import {SubscriptionsActions} from "./actions/payrexx.actions.subscriptions";
-
-
-import axios from "axios";
 import {IPayRex} from "./types";
 
 import {AuthHelper} from "./auth/payrexx.auth";
 
 import {PaymentActions} from "./actions/payrexx.actions.payment";
 import {GatewayActions} from "./actions/payrexx.actions.gateway";
+
+import axios from "axios";
+import {TransactionActions} from "./actions/payrexx.actions.transaction";
 
 export class PayRexx implements IPayRex{
 
@@ -24,6 +24,8 @@ export class PayRexx implements IPayRex{
     public gateway:GatewayActions             = new GatewayActions(this);
 
     public subscriptions:SubscriptionsActions = new SubscriptionsActions(this);
+
+    public transactions:TransactionActions    = new TransactionActions(this);
 
 
     // _instance:	The Payrexx instance name

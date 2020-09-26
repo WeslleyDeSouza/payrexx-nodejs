@@ -6,6 +6,7 @@ const payrexx_auth_1 = require("./auth/payrexx.auth");
 const payrexx_actions_payment_1 = require("./actions/payrexx.actions.payment");
 const payrexx_actions_gateway_1 = require("./actions/payrexx.actions.gateway");
 const axios_1 = require("axios");
+const payrexx_actions_transaction_1 = require("./actions/payrexx.actions.transaction");
 class PayRexx {
     // _instance:	The Payrexx instance name
     // _secret: 	The Payrexx api secret
@@ -21,6 +22,7 @@ class PayRexx {
         this.payment = new payrexx_actions_payment_1.PaymentActions(this);
         this.gateway = new payrexx_actions_gateway_1.GatewayActions(this);
         this.subscriptions = new payrexx_actions_subscriptions_1.SubscriptionsActions(this);
+        this.transactions = new payrexx_actions_transaction_1.TransactionActions(this);
         this.endPoint = `https://api.payrexx.com/${_v}/`;
     }
     /*
