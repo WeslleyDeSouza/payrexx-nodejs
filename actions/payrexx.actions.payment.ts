@@ -21,9 +21,6 @@ export class PaymentActions extends PayrexxActions{
      * endpoint:  https://api.payrexx.com/v1.0/Invoice/id/
      * */
     public get(id:number){
-
-
-
         let params = {};
         params['ApiSignature'] = this.rex.auth.buildSignature('');
         return   axios.get (this.getEndPoint(`${id}/`)+'&'+qs.stringify(params))
@@ -37,6 +34,13 @@ export class PaymentActions extends PayrexxActions{
      *
      * */
     public create(params:IPayCreation){
+
+            if(params.title.includes(' ')){
+                console.warn('title','SPACE NOT ALLOWED')
+            }
+            if(params.description.includes(' ')){
+                console.warn('description','WHITESPACE NOT ALLOWED')
+            }
 
             let data             = qs.stringify(params);
             params.ApiSignature  = this.rex.auth.buildSignature(data);
