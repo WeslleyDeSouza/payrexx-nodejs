@@ -1,13 +1,11 @@
-import {SubscriptionsActions} from "./actions/payrexx.actions.subscriptions";
 import {IPayRex} from "./types";
 
 import {AuthHelper} from "./auth/payrexx.auth";
 
 import {PaymentActions} from "./actions/payrexx.actions.payment";
 import {GatewayActions} from "./actions/payrexx.actions.gateway";
-
-import axios from "axios";
 import {TransactionActions} from "./actions/payrexx.actions.transaction";
+import {SubscriptionsActions} from "./actions/payrexx.actions.subscriptions";
 
 export class PayRexx implements IPayRex{
 
@@ -47,15 +45,7 @@ export class PayRexx implements IPayRex{
 * In case it is not correct, you get log of the error status.
 * */
     checkSignature():Promise<boolean>{
-
-        let queryParams:any  = {};
-
-        queryParams.instance     = this._instance;
-        queryParams.ApiSignature = this.auth.buildSignature('',this._secret);
-
-        return     axios.get (this.getEndPoint()+'SignatureCheck/?'+this.auth.buildUrl(queryParams), {})
-            .then(result=> (result.data.status))
-            .catch(err=> console.log(err))
+       return  this.auth.checkSignature(this.getEndPoint())
     }
 
 }

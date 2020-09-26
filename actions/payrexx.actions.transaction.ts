@@ -16,20 +16,21 @@ export class TransactionActions extends PayrexxActions{
 
     constructor(protected rex:IPayRex){
         super()
+
     }
 
     // TRANSACTION get Retrieve a Transaction(s)
     public get(id:number,single=true){
         let params = {}
         params['ApiSignature'] = this.rex.auth.buildSignature('')
-
         return   axios.get (this.getEndPoint(`${single ? id :''}/`)+'&'+qs.stringify(params))
             .then(response=> this.successHandler(response,'get'))
             .catch(err => this.errorHandler(err));
     }
 
     public create(params: any) {
-        console.log('create not implemented')
+        console.log('create Transaction not implemented' )
+
     }
 
     public capture(id,params={}) {
