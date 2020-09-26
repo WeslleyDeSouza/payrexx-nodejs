@@ -2,10 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PayRexx = void 0;
 const payrexx_actions_subscriptions_1 = require("./actions/payrexx.actions.subscriptions");
-const axios_1 = require("axios");
 const payrexx_auth_1 = require("./auth/payrexx.auth");
 const payrexx_actions_payment_1 = require("./actions/payrexx.actions.payment");
 const payrexx_actions_gateway_1 = require("./actions/payrexx.actions.gateway");
+const axios_1 = require("axios");
 class PayRexx {
     // _instance:	The Payrexx instance name
     // _secret: 	The Payrexx api secret

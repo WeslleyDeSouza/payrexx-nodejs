@@ -32,6 +32,12 @@ class PaymentActions extends payrexx_actions_1.PayrexxActions {
      *
      * */
     create(params) {
+        if (params.title.includes(' ')) {
+            console.warn('title', 'SPACE NOT ALLOWED');
+        }
+        if (params.description.includes(' ')) {
+            console.warn('description', 'WHITESPACE NOT ALLOWED');
+        }
         let data = qs.stringify(params);
         params.ApiSignature = this.rex.auth.buildSignature(data);
         data = qs.stringify(params);
