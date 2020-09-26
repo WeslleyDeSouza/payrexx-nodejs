@@ -87,8 +87,7 @@ export interface IGatewayCreate {
 
     ApiSignature?:any
 }
-
-export interface IPayCreation {
+export interface IPayCreation   {
 
     title:string
     //This is the page title which will be shown on the payment page.
@@ -125,8 +124,7 @@ export interface IPayCreation {
 
     ApiSignature?:any
 }
-
-export interface ISubscription {
+export interface ISubscription  {
     userId:string
     //The contact id you got from webhook.
 
@@ -156,5 +154,3 @@ export interface ISubscription {
 
     ApiSignature?:any
 }
-
-declare var require: any
