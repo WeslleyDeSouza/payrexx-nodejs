@@ -9,11 +9,7 @@ export abstract class PayrexxActions {
     abstract delete(id:number)
 
     protected successHandler(response:AxiosResponse,typ:'get'|'create'|'delete' = null){
-        if(typ == 'create')
-        return response.data.data;
-
-
-
+        if(typ == 'create') return response.data.data;
         return response.data
     }
 

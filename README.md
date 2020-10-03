@@ -29,10 +29,10 @@ https://github.com/WeslleyDeSouza/payrexx-nodejs
 - delete  ✔️
 
 #### Subscriptions
-- log     ✔️
-- delete  ✔️
+- login   ✔️
 - create  ✔️
-
+- update  ✔️
+- delete  ✔️
 
 #### Transactions
 - get     🔨
@@ -43,7 +43,6 @@ https://github.com/WeslleyDeSouza/payrexx-nodejs
 #### Documentation
 For further information, please refer to the official REST API reference: https://developers.payrexx.com/v1.0/reference
 
-
 #### Examples
 - Payment:
 
@@ -52,14 +51,14 @@ For further information, please refer to the official REST API reference: https:
    
        const payment = await PAYR.payment.create({
            "title":       "Item_423",
-           "description": "PaymentCreationTest",
+           "description": "Product_Selling_XY",
            "psp":             1,
            "referenceId": "test",
            "purpose":     "test",
            "amount":        10,
            "vatRate" :      0,
            "currency":     "CHF",
-           "sku":    "20.19.03.1",
+           "sku":           "20.19.03.1",
            "preAuthorization": false,
            "reservation":      0,
        });

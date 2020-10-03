@@ -23,9 +23,9 @@ export class PaymentActions extends PayrexxActions{
     public get(id:number){
         let params = {};
         params['ApiSignature'] = this.rex.auth.buildSignature('');
-        return   axios.get (this.getEndPoint(`${id}/`)+'&'+qs.stringify(params))
+        return axios.get (this.getEndPoint(`${id}/`)+'&'+qs.stringify(params))
             .then(response=> this.successHandler(response,'get'))
-            .catch(err => this.errorHandler(err));
+             .catch(err => this.errorHandler(err));
     }
 
     /**
@@ -35,12 +35,10 @@ export class PaymentActions extends PayrexxActions{
      * */
     public create(params:IPayCreation){
 
-            if(params.title.includes(' ')){
-                console.warn('title','SPACE NOT ALLOWED')
-            }
-            if(params.description.includes(' ')){
-                console.warn('description','WHITESPACE NOT ALLOWED')
-            }
+
+            if(params.title.includes(' ')) console.warn('title','WHITESPACE NOT ALLOWED')
+            if(params.description.includes(' ')) console.warn('description','WHITESPACE NOT ALLOWED')
+
 
             let data             = qs.stringify(params);
             params.ApiSignature  = this.rex.auth.buildSignature(data);
