@@ -4,7 +4,7 @@
   "description": "Payrexx JS SDK",
   "main": "./dist/index.js",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "crypto-js": "^4.0.0",
     "qs": "^6.9.4",
     "request": "^2.88.2"
