@@ -6,6 +6,10 @@ https://github.com/WeslleyDeSouza/payrexx-nodejs
 <code>
    NPM: npm i --save payrexx@latest
 </code>
+<code>
+   yarn: yarn add payrexx
+</code>
+
 
 ## 🔁 Transpile TS to JS
 <code>
@@ -43,7 +47,13 @@ https://github.com/WeslleyDeSouza/payrexx-nodejs
 #### Documentation
 For further information, please refer to the official REST API reference: https://developers.payrexx.com/v1.0/reference
 
+
 #### Examples
+
+<code>
+  import {PayRexx} from "payrexx";
+</code>
+
 - Payment:
 
 <code>
