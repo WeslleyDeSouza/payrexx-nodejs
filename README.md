@@ -6,6 +6,7 @@ https://github.com/WeslleyDeSouza/payrexx-nodejs
 <code>
    NPM: npm i --save payrexx@latest
 </code>
+<br>
 <code>
    yarn: yarn add payrexx
 </code>
