@@ -8,7 +8,7 @@ https://github.com/WeslleyDeSouza/payrexx-nodejs
 </code>
 <br>
 <code>
-   yarn: yarn add payrexx
+   YARN: yarn add payrexx
 </code>
 
 
