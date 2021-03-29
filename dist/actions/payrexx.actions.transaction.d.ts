@@ -10,7 +10,7 @@ export declare class TransactionActions extends PayrexxActions {
     protected rex: PayRexx;
     constructor(rex: PayRexx);
     get(id: number, single?: boolean): any;
-    create(params: any): void;
+    create(params: any): Promise<unknown>;
     capture(id: any, params?: {}): any;
     charge(id: any, params?: any): any;
     refund(id: any, params?: {}): any;

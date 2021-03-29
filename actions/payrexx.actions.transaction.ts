@@ -30,8 +30,10 @@ export class TransactionActions extends PayrexxActions{
     }
 
     public create(params: any) {
-        console.log('create Transaction not implemented' )
-
+        return new Promise(resolve => {
+            console.log('create Transaction not implemented' );
+            resolve(null);
+        })
     }
 
     public capture(id,params={}) {

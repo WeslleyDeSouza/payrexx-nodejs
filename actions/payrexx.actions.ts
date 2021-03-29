@@ -2,11 +2,11 @@ import {AxiosError, AxiosResponse} from "axios";
 
 export abstract class PayrexxActions {
 
-    abstract get(id:number);
+    abstract get(id:number):Promise<any>;
 
-    abstract create(params:any);
+    abstract create(params:any):Promise<any>;
 
-    abstract delete(id:number);
+    abstract delete(id:number):Promise<any>;
 
     protected successHandler(response:AxiosResponse, typ: 'get'|'create'|'delete' = null){
         if(typ == 'create')

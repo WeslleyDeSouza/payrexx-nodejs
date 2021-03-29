@@ -24,7 +24,10 @@ class TransactionActions extends payrexx_actions_1.PayrexxActions {
             .catch(err => this.errorHandler(err));
     }
     create(params) {
-        console.log('create Transaction not implemented');
+        return new Promise(resolve => {
+            console.log('create Transaction not implemented');
+            resolve(null);
+        });
     }
     capture(id, params = {}) {
         params['ApiSignature'] = this.rex.auth.buildSignature('');
