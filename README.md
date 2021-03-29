@@ -47,6 +47,7 @@ For further information, please refer to the official REST API reference: https:
 - Payment:
 
 <code>
+       const PayRexx = require('payrexx');
        let PAYR = new PayRexx( auth.instance, auth.secret);
    
        const payment = await PAYR.payment.create({
