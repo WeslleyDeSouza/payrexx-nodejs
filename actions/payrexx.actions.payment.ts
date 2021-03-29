@@ -1,8 +1,46 @@
-import {IPayCreation, IPayRex} from "../types";
+import {PayRexx} from "../index";
 import {PayrexxActions} from "./payrexx.actions";
 
-var qs = require('qs');
-var axios = require('axios');
+const qs    = require('qs');
+const axios = require('axios');
+
+interface IPayCreation {
+
+    title:string
+    //This is the page title which will be shown on the payment page.
+
+    description:string
+    //This is a description which will be shown on the payment page.
+
+    psp?:any
+    //The psp which should be used for the payment. (Can be an array of integers.)
+
+    referenceId:string
+    //An internal reference id used by your system.
+
+    purpose:string
+    //The purpose of the payment.
+
+    amount:number
+    //The amount of the payment in cents.
+
+    vatRate:number
+    //VAT rate percentage (double)
+
+    currency: string
+    //The currency of the payment.
+
+    sku?:string
+    //Product stock keeping unit
+
+    preAuthorization?:boolean
+    //Whether charge payment manually at a later date (type authorization).
+
+    reservation?:any
+    //Whether charge payment manually at a later date (type reservation).
+
+    ApiSignature?:any
+}
 
 /**
  * This class represents all Payment Actions
@@ -12,7 +50,7 @@ var axios = require('axios');
  * */
 export class PaymentActions extends PayrexxActions{
 
-    constructor(protected rex:IPayRex){
+    constructor(protected rex:PayRexx){
         super()
     }
 
@@ -23,9 +61,9 @@ export class PaymentActions extends PayrexxActions{
     public get(id:number){
         let params = {};
         params['ApiSignature'] = this.rex.auth.buildSignature('');
-        return axios.get (this.getEndPoint(`${id}/`)+'&'+qs.stringify(params))
+        return   axios.get (this.getEndPoint(`${id}/`)+'&'+qs.stringify(params))
             .then(response=> this.successHandler(response,'get'))
-             .catch(err => this.errorHandler(err));
+            .catch(err => this.errorHandler(err));
     }
 
     /**
@@ -35,10 +73,8 @@ export class PaymentActions extends PayrexxActions{
      * */
     public create(params:IPayCreation){
 
-
-            if(params.title.includes(' ')) console.warn('title','WHITESPACE NOT ALLOWED')
-            if(params.description.includes(' ')) console.warn('description','WHITESPACE NOT ALLOWED')
-
+            if(params.title && params.title.includes(' '))
+             console.warn('Escape white spaces')
 
             let data             = qs.stringify(params);
             params.ApiSignature  = this.rex.auth.buildSignature(data);

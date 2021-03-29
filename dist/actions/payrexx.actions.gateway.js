@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GatewayActions = void 0;
 const payrexx_actions_1 = require("./payrexx.actions");
-var qs = require('qs');
-var axios = require('axios');
+const axios = require('axios');
+const qs = require('qs');
 /**
  * This class represents all Gateway Actions
  * https://developers.payrexx.com/reference#gateway
@@ -45,3 +45,4 @@ class GatewayActions extends payrexx_actions_1.PayrexxActions {
     }
 }
 exports.GatewayActions = GatewayActions;
+//# sourceMappingURL=payrexx.actions.gateway.js.map

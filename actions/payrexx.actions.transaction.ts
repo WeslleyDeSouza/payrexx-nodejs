@@ -1,5 +1,6 @@
-import {IPayRex} from "../types";
+
 import {PayrexxActions} from "./payrexx.actions";
+import {PayRexx} from "../index";
 
 var qs = require('qs');
 var axios = require('axios');
@@ -14,7 +15,7 @@ var axios = require('axios');
 export class TransactionActions extends PayrexxActions{
 
 
-    constructor(protected rex:IPayRex){
+    constructor(protected rex:PayRexx){
         super()
 
     }

@@ -1,10 +1,39 @@
-import {IPayRex, ISubscription} from "../types";
+import {PayRexx} from "../index";
 import {PayrexxActions} from "./payrexx.actions";
+const axios = require('axios');
+const qs    = require('qs');
 
-var qs = require('qs');
-var axios = require('axios');
 
+interface ISubscription {
+    userId:string
+    //The contact id you got from webhook.
 
+    psp:string
+    //The ID of the psp to use.
+
+    amount:string
+    //The amount of the payment to fire in cents.
+
+    currency:string
+    //The ISO code of the currency of the payment.
+
+    purpose:string
+    //The payment purpose. What is the payer paying for?
+
+    paymentInterval:string
+    //The payment interval as string. (see PHP documentation of date interval for format)
+
+    period:string
+    //The subscription's period as string. (see PHP documentation of date interval for format)
+
+    cancellationInterval:string
+    //The interval of cancellation as string. (see PHP documentation of date interval for format)
+
+    referenceId?:string
+    //The internal reference id. (Will be sent back with Webhook, can be used as identification)
+
+    ApiSignature?:any
+}
 
 /**
  * This class represents all Subscriptions Actions
@@ -16,15 +45,11 @@ var axios = require('axios');
 export class SubscriptionsActions extends PayrexxActions{
 
 
-    constructor(protected rex:IPayRex){
+    constructor(protected rex:PayRexx){
         super()
     }
 
-    /**
-     * Login a Subscription Customer
-     * @Param id:int32 The contact id you received through webhook data.
-     * */
-    login(id:number){
+    log(id){
         let params = {userId:id}
             params['ApiSignature'] = this.rex.auth.buildSignature(qs.stringify(params));
 
@@ -42,22 +67,7 @@ export class SubscriptionsActions extends PayrexxActions{
             .catch(err => this.errorHandler(err));
     }
 
-    /**
-     * Create a New Subscription
-     * */
     create(params:ISubscription):Promise<any[]>{
-        /**
-         https://www.php.net/manual/de/dateinterval.construct.php
-         Y	Jahre
-         M	Monate
-         D	Tage
-         W	Wochen. Diese werden in Tage umgerechnet und können daher nicht mit D kombiniert werden.
-         H	Stunden
-         M	Minuten
-         S	Sekunden
-
-         once a month = P1M
-         * */
 
         let data             =  qs.stringify(params);
         params.ApiSignature  = this.rex.auth.buildSignature(data);
@@ -69,25 +79,6 @@ export class SubscriptionsActions extends PayrexxActions{
 
     }
 
-    /**
-     * update a Subscription
-     * */
-    update(id,params:{amount:string,currency:string,purpose:string, ApiSignature?:any}):Promise<any[]>{
-
-        let data             =  qs.stringify(params);
-        params.ApiSignature  = this.rex.auth.buildSignature(data);
-        data                 = qs.stringify(params);
-
-        return   axios.post (this.getEndPoint(id),  data)
-            .then(response=>this.successHandler(response,'create'))
-            .catch(err=> this.errorHandler(err))
-
-    }
-
-    /**
-     * Remove a Subscription
-     * @Param id:number
-     * */
     delete(id:number){
         let params             = {};
         params['ApiSignature'] = this.rex.auth.buildSignature('');
@@ -96,8 +87,9 @@ export class SubscriptionsActions extends PayrexxActions{
             .catch(err => this.errorHandler(err));
     }
 
+
     private getEndPoint(path = ''){
-        return  this.rex.getEndPoint()+'Subscription/'+ path +'?'+this.rex.auth.buildUrl({instance:this.rex.auth.getCredential().instance})
+        return  this.rex.getEndPoint()+'AuthToken/'+ path +'?'+this.rex.auth.buildUrl({instance:this.rex.auth.getCredential().instance})
     }
 
 }

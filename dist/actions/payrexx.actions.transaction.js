@@ -58,3 +58,4 @@ class TransactionActions extends payrexx_actions_1.PayrexxActions {
     }
 }
 exports.TransactionActions = TransactionActions;
+//# sourceMappingURL=payrexx.actions.transaction.js.map

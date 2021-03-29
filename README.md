@@ -9,7 +9,7 @@ https://github.com/WeslleyDeSouza/payrexx-nodejs
 
 ## 🔁 Transpile TS to JS
 <code>
- gulp prod
+ tsc
 </code>
 
 ## 🔨 Implemented

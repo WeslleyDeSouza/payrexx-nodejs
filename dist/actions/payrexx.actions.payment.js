@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PaymentActions = void 0;
 const payrexx_actions_1 = require("./payrexx.actions");
-var qs = require('qs');
-var axios = require('axios');
+const qs = require('qs');
+const axios = require('axios');
 /**
  * This class represents all Payment Actions
  * https://developers.payrexx.com/reference#invoices-1
@@ -32,10 +32,8 @@ class PaymentActions extends payrexx_actions_1.PayrexxActions {
      *
      * */
     create(params) {
-        if (params.title.includes(' '))
-            console.warn('title', 'WHITESPACE NOT ALLOWED');
-        if (params.description.includes(' '))
-            console.warn('description', 'WHITESPACE NOT ALLOWED');
+        if (params.title && params.title.includes(' '))
+            console.warn('Escape white spaces');
         let data = qs.stringify(params);
         params.ApiSignature = this.rex.auth.buildSignature(data);
         data = qs.stringify(params);
@@ -59,3 +57,4 @@ class PaymentActions extends payrexx_actions_1.PayrexxActions {
     }
 }
 exports.PaymentActions = PaymentActions;
+//# sourceMappingURL=payrexx.actions.payment.js.map

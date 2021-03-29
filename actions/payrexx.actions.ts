@@ -2,18 +2,22 @@ import {AxiosError, AxiosResponse} from "axios";
 
 export abstract class PayrexxActions {
 
-    abstract get(id:number)
+    abstract get(id:number);
 
-    abstract create(params:any)
+    abstract create(params:any);
 
-    abstract delete(id:number)
+    abstract delete(id:number);
 
-    protected successHandler(response:AxiosResponse,typ:'get'|'create'|'delete' = null){
-        if(typ == 'create') return response.data.data;
+    protected successHandler(response:AxiosResponse, typ: 'get'|'create'|'delete' = null){
+        if(typ == 'create')
+        return response.data.data;
+
+
+
         return response.data
     }
 
-    protected errorHandler(response:AxiosError ,typ:'get'|'create'|'delete' = null){
+    protected errorHandler(response:AxiosError , typ: 'get'|'create'|'delete' = null){
        if(response){
            console.log(  response.response.data )
        }

@@ -1,35 +1,26 @@
-import {IPayRex} from "./types";
+
+const axios     = require('axios');
 
 import {AuthHelper} from "./auth/payrexx.auth";
-
 import {PaymentActions} from "./actions/payrexx.actions.payment";
 import {GatewayActions} from "./actions/payrexx.actions.gateway";
-import {TransactionActions} from "./actions/payrexx.actions.transaction";
 import {SubscriptionsActions} from "./actions/payrexx.actions.subscriptions";
 
-export class PayRexx implements IPayRex{
+export class PayRexx {
 
-    // URL Endpoint holder | Example: https://api.payrexx.com/
-    private endPoint:string;
+    private endPoint;
 
-    public auth:AuthHelper                    = new AuthHelper(this._instance,this._secret);
+    public auth:AuthHelper        = new AuthHelper(this._instance,this._secret);
 
     /**
      * actions
      * */
     public payment:PaymentActions             = new PaymentActions(this);
-
     public gateway:GatewayActions             = new GatewayActions(this);
-
     public subscriptions:SubscriptionsActions = new SubscriptionsActions(this);
 
-    public transactions:TransactionActions    = new TransactionActions(this);
 
-
-    // _instance:	The Payrexx instance name
-    // _secret: 	The Payrexx api secret
-    // _v:          REST API Version
-    constructor(private _instance:string,private _secret:string,private _v = 'v1.0'){
+    constructor(private _instance,private _secret,private _v = 'v1.0'){
         this.endPoint = `https://api.payrexx.com/${_v}/`;
     }
 
@@ -45,7 +36,19 @@ export class PayRexx implements IPayRex{
 * In case it is not correct, you get log of the error status.
 * */
     checkSignature():Promise<boolean>{
-       return  this.auth.checkSignature(this.getEndPoint())
+
+        let queryParams:any  = {};
+
+        queryParams.instance     = this._instance;
+        queryParams.ApiSignature = this.auth.buildSignature('',this._secret);
+
+        return     axios.get (this.getEndPoint()+'SignatureCheck/?'+this.auth.buildUrl(queryParams), {})
+            .then(result=> (result.data.status))
+            .catch(err=> console.log(err))
     }
 
 }
+
+
+
+
