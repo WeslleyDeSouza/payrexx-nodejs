@@ -14,7 +14,7 @@ export abstract class PayrexxActions {
               response.data.data[index] :
                 response.data.data;
         }
-        return response.data
+        return index !== undefined && response.data[index] ? response.data[index] : response.data
     }
 
     protected errorHandler(response:AxiosError , typ: 'get'|'create'|'delete' = null){

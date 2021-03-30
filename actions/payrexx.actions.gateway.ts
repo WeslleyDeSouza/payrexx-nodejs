@@ -4,6 +4,7 @@ import {PayrexxActions} from "./payrexx.actions";
 const axios = require('axios');
 const qs    = require('qs');
 
+// Request interface
 interface IGatewayCreate {
     amount:number
     //Amount of payment in cents.
@@ -70,6 +71,124 @@ interface IGatewayCreate {
 
     ApiSignature?:any
 }
+interface IGatewayResponse  {
+    "id":number,
+    "status"?: 'waiting' | 'confirmed' | 'authorized' | 'reserved';
+    "hash":string,
+    "referenceId":string,
+    "link":string,
+    "invoices":any[],
+    "preAuthorization":number,
+    "fields":{
+        "title":{
+            "active":boolean,
+            "mandatory":boolean
+        },
+        "forename":{
+            "active":boolean,
+            "mandatory":boolean
+        },
+        "surname":{
+            "active":boolean,
+            "mandatory":boolean
+        },
+        "company":{
+            "active":boolean,
+            "mandatory":boolean
+        },
+        "street":{
+            "active":boolean,
+            "mandatory":boolean
+        },
+        "postcode":{
+            "active":boolean,
+            "mandatory":boolean
+        },
+        "place":{
+            "active":boolean,
+            "mandatory":boolean
+        },
+        "country":{
+            "active":boolean,
+            "mandatory":boolean
+        },
+        "phone":{
+            "active":boolean,
+            "mandatory":boolean
+        },
+        "email":{
+            "active":boolean,
+            "mandatory":boolean
+        },
+        "date_of_birth":{
+            "active":boolean,
+            "mandatory":boolean,
+            "names":any
+        },
+        "text":{
+            "active":boolean,
+            "mandatory":boolean,
+            "names":any
+        }
+    },
+    "psp":any[],
+    "pm":any [],
+    "amount":number,
+    "vatRate":number,
+    "currency":string,
+    "sku":string,
+    "createdAt":number
+}
+
+class Gateway implements IGatewayResponse {
+
+    amount: number;
+    createdAt: number;
+    currency: string;
+    fields: { title: { active: boolean; mandatory: boolean }; forename: { active: boolean; mandatory: boolean }; surname: { active: boolean; mandatory: boolean }; company: { active: boolean; mandatory: boolean }; street: { active: boolean; mandatory: boolean }; postcode: { active: boolean; mandatory: boolean }; place: { active: boolean; mandatory: boolean }; country: { active: boolean; mandatory: boolean }; phone: { active: boolean; mandatory: boolean }; email: { active: boolean; mandatory: boolean }; date_of_birth: { active: boolean; mandatory: boolean; names: any }; text: { active: boolean; mandatory: boolean; names: any } };
+    hash: string;
+    id: number;
+    invoices: any[];
+    link: string;
+    pm: any[];
+    preAuthorization: number;
+    psp: any[];
+    referenceId: string;
+    sku: string;
+    status: "waiting" | "confirmed" | "authorized" | "reserved";
+    vatRate: number;
+
+    constructor(params ,protected action:GatewayActions) {
+        params ?
+            this.initialise(params):
+            null
+    }
+
+    private initialise(params){
+        for(let k in params){
+            this[k] = params[k];
+        }
+        return this;
+    }
+
+    public getId(){
+        return this.id;
+    }
+
+    public reload(){
+        return new Promise(resolve => {
+            !this.id ? resolve(this)
+                : this.action.get(this.id)
+                    .then(this.initialise)
+                    .then(resolve)
+        })
+    }
+
+    public delete(){
+        return this.action.delete(this.getId())
+    }
+}
+
 
 /**
  * This class represents all Gateway Actions
@@ -79,21 +198,21 @@ interface IGatewayCreate {
  * */
 export class GatewayActions extends PayrexxActions{
 
-
     constructor(protected rex:PayRexx){
         super()
     }
 
-    get(id:number){
+    get(id:number):Promise<Gateway>{
         let params = {}
         params['ApiSignature'] = this.rex.auth.buildSignature('')
 
         return   axios.get (this.getEndPoint(`${id}/`)+'&'+qs.stringify(params))
-            .then(response=> this.successHandler(response,'get'))
-            .catch(err => this.errorHandler(err));
+            .then(response=> this.successHandler(response,'get',0))
+             .then((gateway)=>new Gateway(gateway,this))
+              .catch(err => this.errorHandler(err));
     }
 
-    create(params:IGatewayCreate):Promise<any>{
+    create(params:IGatewayCreate):Promise<Gateway>{
         if (!params.amount) {
             throw new Error('Amount required!')
         }
@@ -103,18 +222,18 @@ export class GatewayActions extends PayrexxActions{
 
         return   axios.post (this.getEndPoint(),  data)
             .then(response=>this.successHandler(response,'create',0))
+            .then((gateway)=>new Gateway(gateway,this))
             .catch(err=> this.errorHandler(err))
 
     }
 
-    delete(id:number){
+    delete(id:number):Promise<{ "status": string, "data": [ { "id": number } ] }>{
         let params             = {};
         params['ApiSignature'] = this.rex.auth.buildSignature('');
         return   axios.delete (this.getEndPoint(`${id}/`),{data:qs.stringify(params)})
             .then(response=> this.successHandler(response,'delete'))
             .catch(err => this.errorHandler(err));
     }
-
 
     private getEndPoint(path = ''){
         return  this.rex.getEndPoint()+'Gateway/'+ path +'?'+this.rex.auth.buildUrl({instance:this.rex.auth.getCredential().instance})
