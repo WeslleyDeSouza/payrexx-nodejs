@@ -1,7 +1,7 @@
 {
   "name": "payrexx",
-  "version": "0.4.1",
-  "description": "",
+  "version": "0.4.3",
+  "description": "Payrexx enables you to handle worldwide customer payments safely and easily",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "dependencies": {
@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "@types/node": "^13.13.48",
-    "typescript": "^3.9.7"
+    "typescript": "^4.2.3"
   },
   "scripts": {
     "start": "gulp && node dist/index.js",
