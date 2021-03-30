@@ -15,9 +15,9 @@
     "typescript": "^4.2.3"
   },
   "scripts": {
-    "start": "gulp && node dist/index.js",
+    "build": "tsc",
     "node": "node dist/index.js"
   },
-  "author": "Weslley",
+  "author": "https://github.com/WeslleyDeSouza",
   "license": "ISC"
 }
