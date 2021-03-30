@@ -23,7 +23,7 @@ https://github.com/WeslleyDeSouza/payrexx-nodejs
 - checkSignature ✔️
 
 
-#### Payments
+#### Paylink
 - get     ✔️
 - create  ✔️
 - delete  ✔️
