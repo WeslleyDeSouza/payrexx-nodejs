@@ -1,12 +1,9 @@
 import PayRexx from "../index";
+const auth = require('./credentials.json');
 
-// Tested 04.06.2020
-(async ()=>{
-    const auth = require('./credentials.json');
+(async (payrexx)=>{
 
-    let PAYR = new PayRexx( auth.instance, auth.secret);
-
-    const gateway = await PAYR.gateway.create({
+    const {id} = await payrexx.gateway.create({
         "amount": 8925,
         "vatRate": 7.7,
         "currency": "CHF",
@@ -17,16 +14,16 @@ import PayRexx from "../index";
         "failedRedirectUrl":  "https://www.merchant-website.com/failed"
     });
 
-
-    console.log('PAYR.gateway',gateway[0].id)
+    console.log('gatewayId',id)
     console.log('-----------------------------------------');
 
-    const gw = await PAYR.gateway.get(gateway[0].id)
-    console.log(gw)
+    const _get = await payrexx.gateway.get(id)
+    console.log(_get)
     console.log('-----------------------------------------');
 
-    const result = await PAYR.gateway.delete(gateway[0].id)
-    console.log(result.status);
+    const _delete = await payrexx.gateway.delete(id)
+    console.log(_delete.status);
 
 
-})();
+})
+    (new PayRexx( auth.instance, auth.secret));

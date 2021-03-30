@@ -55,14 +55,14 @@ For further information, please refer to the official REST API reference: https:
   import PayRexx from "payrexx";
 </code>
 
-- Payment:
+- Paylink:
 
 <code>
        const PayRexx = require('payrexx');
    
        let PAYR = new PayRexx( auth.instance, auth.secret);
    
-       const payment = await PAYR.payment.create({
+       const payment = await PAYR.paylink.create({
            "title":       "Item_423",
            "description": "Product_Selling_XY",
            "psp":             1,
@@ -77,15 +77,15 @@ For further information, please refer to the official REST API reference: https:
        });
    
    
-       console.log('PAYR.payment',payment[0].id)
+       console.log('PAYR.payment',payment.id)
        console.log('-----------------------------------------');
    
-       const gw = await PAYR.payment.get(payment[0].id)
-       console.log(gw)
+       const _get = await PAYR.payment.get(payment.id)
+       console.log(_get)
        console.log('-----------------------------------------');
    
-       const result = await PAYR.payment.delete(payment[0].id)
-       console.log(result.status);
+       const _delete = await PAYR.payment.delete(payment.id)
+       console.log(_delete.status);
 
 </code>
 
@@ -106,14 +106,14 @@ For further information, please refer to the official REST API reference: https:
     });
 
 
-    console.log('PAYR.gateway',gateway[0].id)
+    console.log('PAYR.gateway',gateway.id)
     console.log('-----------------------------------------');
 
-    const gw = await PAYR.gateway.get(gateway[0].id)
-    console.log(gw)
+    const _get = await PAYR.gateway.get(gateway.id)
+    console.log(_get)
     console.log('-----------------------------------------');
 
-    const result = await PAYR.gateway.delete(gateway[0].id)
-    console.log(result.status);
+    const _delete = await PAYR.gateway.delete(gateway.id)
+    console.log(_delete.status);
 
 </code>

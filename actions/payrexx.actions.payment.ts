@@ -42,13 +42,108 @@ interface IPayCreation {
     ApiSignature?:any
 }
 
+interface IPayLinkResponse   {
+    "id": number;
+    "hash": string;
+    "status"?: 'waiting' | 'confirmed' | 'authorized' | 'reserved';
+    "referenceId": string;
+    "link": string;
+    "invoices": any[];
+    "preAuthorization": number;
+    "reservation": number;
+    "name": string,
+    "api": boolean,
+    "fields": {
+        "title": {
+            "active": boolean,
+            "mandatory": boolean
+        },
+        "forename": {
+            "active": boolean,
+            "mandatory": boolean
+        },
+        "surname": {
+            "active": boolean,
+            "mandatory": boolean
+        },
+        "company": {
+            "active": boolean,
+            "mandatory": boolean
+        },
+        "street": {
+            "active": boolean,
+            "mandatory": boolean
+        },
+        "postcode": {
+            "active": boolean,
+            "mandatory": boolean
+        },
+        "place": {
+            "active": boolean,
+            "mandatory": boolean
+        },
+        "country": {
+            "active": boolean,
+            "mandatory": boolean
+        },
+        "phone": {
+            "active": boolean,
+            "mandatory": boolean
+        },
+        "email": {
+            "active": boolean,
+            "mandatory": boolean
+        },
+        "date_of_birth": {
+            "active": boolean,
+            "mandatory": boolean
+        },
+        "terms": {
+            "active": boolean,
+            "mandatory": boolean
+        },
+        "privacy_policy": {
+            "active": boolean,
+            "mandatory": boolean
+        },
+        "custom_field_1": {
+            "active": boolean,
+            "mandatory": boolean,
+            "names": any
+        },
+        "custom_field_2": {
+            "active": boolean,
+            "mandatory": boolean,
+            "names": boolean
+        },
+        "custom_field_3": {
+            "active": boolean,
+            "mandatory": boolean,
+            "names": boolean
+        }
+    },
+    "psp": number,
+    "pm": any[],
+    "purpose":  string,
+    "amount": number,
+    "vatRate" : number,
+    "currency": string,
+    "sku": string,
+    "subscriptionState": boolean,
+    "subscriptionInterval": string,
+    "subscriptionPeriod": string,
+    "subscriptionPeriodMinAmount": string,
+    "subscriptionCancellationInterval": string,
+    "createdAt": number
+}
+
 /**
- * This class represents all Payment Actions
+ * This class represents all PayLink Actions
  * https://developers.payrexx.com/reference#invoices-1
  *
  * @2020 Weslley De Souza
  * */
-export class PaymentActions extends PayrexxActions{
+export class PayLinkActions extends PayrexxActions{
 
     constructor(protected rex:PayRexx){
         super()
@@ -58,7 +153,7 @@ export class PaymentActions extends PayrexxActions{
      * Retrieve a payment link
      * endpoint:  https://api.payrexx.com/v1.0/Invoice/id/
      * */
-    public get(id:number){
+    public get(id:number):Promise<IPayLinkResponse>{
         let params = {};
         params['ApiSignature'] = this.rex.auth.buildSignature('');
         return   axios.get (this.getEndPoint(`${id}/`)+'&'+qs.stringify(params))
@@ -69,9 +164,9 @@ export class PaymentActions extends PayrexxActions{
     /**
      * Create a payment link
      * @params :IPayCreation
-     *
+     * TODO: return interface
      * */
-    public create(params:IPayCreation){
+    public create(params:IPayCreation):Promise<IPayLinkResponse>{
 
             if(params.title && params.title.includes(' '))
              console.warn('Escape white spaces')
@@ -81,7 +176,7 @@ export class PaymentActions extends PayrexxActions{
             data                 = qs.stringify(params);
 
           return  axios.post (this.getEndPoint(),  data)
-              .then(response=>this.successHandler(response,'create'))
+              .then(response=>this.successHandler(response,'create',0))
                       .catch(err=> this.errorHandler(err))
 
     }
@@ -89,7 +184,7 @@ export class PaymentActions extends PayrexxActions{
     /**
      * Remove a payment link
      * */
-    public delete(id:number){
+    public delete(id:number):Promise<{ "status": string, "data": [ { "id": number } ] }>{
         let params             = {};
         params['ApiSignature'] = this.rex.auth.buildSignature('');
         return   axios.delete (this.getEndPoint(`${id}/`),{data:qs.stringify(params)})
@@ -98,7 +193,7 @@ export class PaymentActions extends PayrexxActions{
 
     }
 
-    private getEndPoint(path = '',instance = true){
+    private getEndPoint(path:string = '',instance:boolean = true){
         return  this.rex.getEndPoint()+'Invoice/'+ path
             + (instance ? ('?'+this.rex.auth.buildUrl({instance:this.rex.auth.getCredential().instance})):'')
     }

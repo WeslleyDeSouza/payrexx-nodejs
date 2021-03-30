@@ -1,8 +1,7 @@
-
 const axios     = require('axios');
 
 import {AuthHelper} from "./auth/payrexx.auth";
-import {PaymentActions} from "./actions/payrexx.actions.payment";
+import {PayLinkActions} from "./actions/payrexx.actions.payment";
 import {GatewayActions} from "./actions/payrexx.actions.gateway";
 import {SubscriptionsActions} from "./actions/payrexx.actions.subscriptions";
 
@@ -10,14 +9,14 @@ export default class PayRexx {
 
     private endPoint;
 
-    public auth:AuthHelper        = new AuthHelper(this._instance,this._secret);
+    public auth:AuthHelper                  = new AuthHelper(this._instance,this._secret);
 
     /**
-     * actions
+     * Actions
      * */
-    public payment:PaymentActions             = new PaymentActions(this);
+    public paylink:PayLinkActions           = new PayLinkActions(this);
 
-    public gateway:GatewayActions             = new GatewayActions(this);
+    public gateway:GatewayActions           = new GatewayActions(this);
 
     public subscriptions:SubscriptionsActions = new SubscriptionsActions(this);
 

@@ -1,12 +1,9 @@
 import PayRexx from "../index";
+const auth = require('./credentials.json');
 
-// Tested 04.06.2020
-(async ()=>{
-    const auth = require('./credentials.json');
+(async (payrexx)=>{
 
-    let PAYR = new PayRexx( auth.instance, auth.secret);
-
-    const payment = await PAYR.payment.create({
+    const {id} = await payrexx.paylink.create({
         "title":       "ABO_123",
         "description": "test",
         "psp":             1,
@@ -20,16 +17,15 @@ import PayRexx from "../index";
         "reservation":      0,
     });
 
-
-    console.log('PAYR.payment',payment[0].id)
+    console.log('ID:',id)
     console.log('-----------------------------------------');
 
-    const gw = await PAYR.payment.get(payment[0].id)
-    console.log(gw)
+    const _get = await payrexx.paylink.get(id)
+    console.log(_get)
     console.log('-----------------------------------------');
 
-    const result = await PAYR.payment.delete(payment[0].id)
-    console.log(result.status);
+    const _delete = await payrexx.paylink.delete(id)
+    console.log(_delete.status);
 
-
-})();
+})
+    (new PayRexx( auth.instance, auth.secret));

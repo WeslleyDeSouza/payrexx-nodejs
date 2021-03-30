@@ -93,7 +93,7 @@ export class GatewayActions extends PayrexxActions{
             .catch(err => this.errorHandler(err));
     }
 
-    create(params:IGatewayCreate):Promise<any[]>{
+    create(params:IGatewayCreate):Promise<any>{
         if (!params.amount) {
             throw new Error('Amount required!')
         }
@@ -102,7 +102,7 @@ export class GatewayActions extends PayrexxActions{
         data                 = qs.stringify(params);
 
         return   axios.post (this.getEndPoint(),  data)
-            .then(response=>this.successHandler(response,'create'))
+            .then(response=>this.successHandler(response,'create',0))
             .catch(err=> this.errorHandler(err))
 
     }

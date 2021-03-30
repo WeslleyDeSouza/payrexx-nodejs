@@ -8,10 +8,12 @@ export abstract class PayrexxActions {
 
     abstract delete(id:number):Promise<any>;
 
-    protected successHandler(response:AxiosResponse, typ: 'get'|'create'|'delete' = null){
-        if(typ == 'create')
-        return response.data.data;
-
+    protected successHandler(response:AxiosResponse, typ: 'get'|'create'|'delete' = null, index = undefined){
+        if(typ == 'create'){
+          return index !== undefined && response.data.data && response.data.data[index] ?
+              response.data.data[index] :
+                response.data.data;
+        }
         return response.data
     }
 
