@@ -4,5 +4,5 @@ export declare abstract class PayrexxActions {
     abstract create(params: any): Promise<any>;
     abstract delete(id: number): Promise<any>;
     protected successHandler(response: AxiosResponse, typ?: 'get' | 'create' | 'delete'): any;
-    protected errorHandler(response: AxiosError, typ?: 'get' | 'create' | 'delete'): void;
+    protected errorHandler(response: AxiosError, typ?: 'get' | 'create' | 'delete'): any;
 }

@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PayRexx = void 0;
 const axios = require('axios');
 const payrexx_auth_1 = require("./auth/payrexx.auth");
 const payrexx_actions_payment_1 = require("./actions/payrexx.actions.payment");
@@ -21,10 +20,13 @@ class PayRexx {
         this.endPoint = `https://api.payrexx.com/${_v}/`;
     }
     /*
-   * returns Base EndPoint
-   * */
+     *  URL EndPoint
+     * */
     getEndPoint() {
         return this.endPoint;
+    }
+    getApiSignature(query = '') {
+        return this.auth.buildSignature(query, this._secret);
     }
     /*
 * This endpoint can be used to verify the INSTANCE_API_SECRET to be correct.
@@ -33,11 +35,11 @@ class PayRexx {
     checkSignature() {
         let queryParams = {};
         queryParams.instance = this._instance;
-        queryParams.ApiSignature = this.auth.buildSignature('', this._secret);
+        queryParams.ApiSignature = this.getApiSignature();
         return axios.get(this.getEndPoint() + 'SignatureCheck/?' + this.auth.buildUrl(queryParams), {})
             .then(result => (result.data.status))
             .catch(err => console.log(err));
     }
 }
-exports.PayRexx = PayRexx;
+exports.default = PayRexx;
 //# sourceMappingURL=index.js.map

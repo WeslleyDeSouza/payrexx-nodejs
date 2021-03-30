@@ -52,7 +52,7 @@ For further information, please refer to the official REST API reference: https:
 #### Examples
 
 <code>
-  import {PayRexx} from "payrexx";
+  import PayRexx from "payrexx";
 </code>
 
 - Payment:

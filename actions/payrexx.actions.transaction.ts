@@ -1,6 +1,6 @@
-
+import PayRexx from "../index";
 import {PayrexxActions} from "./payrexx.actions";
-import {PayRexx} from "../index";
+
 
 var qs = require('qs');
 var axios = require('axios');

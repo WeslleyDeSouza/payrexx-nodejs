@@ -1,5 +1,5 @@
+import PayRexx from "../index";
 import { PayrexxActions } from "./payrexx.actions";
-import { PayRexx } from "../index";
 /**
  * This class represents all Transactions Actions
  * https://developers.payrexx.com/reference#transaction

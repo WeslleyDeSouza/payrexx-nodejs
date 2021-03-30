@@ -1,4 +1,4 @@
-import {PayRexx} from "../index";
+import PayRexx from "../index";
 import {PayrexxActions} from "./payrexx.actions";
 
 const qs    = require('qs');

@@ -12,8 +12,6 @@ export abstract class PayrexxActions {
         if(typ == 'create')
         return response.data.data;
 
-
-
         return response.data
     }
 
@@ -21,8 +19,6 @@ export abstract class PayrexxActions {
        if(response){
            console.log(  response.response.data )
        }
-
-
-        return
+        return undefined
     }
 }

@@ -11,7 +11,7 @@ class PayrexxActions {
         if (response) {
             console.log(response.response.data);
         }
-        return;
+        return undefined;
     }
 }
 exports.PayrexxActions = PayrexxActions;

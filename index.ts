@@ -6,7 +6,7 @@ import {PaymentActions} from "./actions/payrexx.actions.payment";
 import {GatewayActions} from "./actions/payrexx.actions.gateway";
 import {SubscriptionsActions} from "./actions/payrexx.actions.subscriptions";
 
-export class PayRexx {
+export default class PayRexx {
 
     private endPoint;
 
@@ -16,19 +16,24 @@ export class PayRexx {
      * actions
      * */
     public payment:PaymentActions             = new PaymentActions(this);
-    public gateway:GatewayActions             = new GatewayActions(this);
-    public subscriptions:SubscriptionsActions = new SubscriptionsActions(this);
 
+    public gateway:GatewayActions             = new GatewayActions(this);
+
+    public subscriptions:SubscriptionsActions = new SubscriptionsActions(this);
 
     constructor(private _instance,private _secret,private _v = 'v1.0'){
         this.endPoint = `https://api.payrexx.com/${_v}/`;
     }
 
     /*
-   * returns Base EndPoint
-   * */
-    getEndPoint(){
+     *  URL EndPoint
+     * */
+    getEndPoint():string{
         return this.endPoint;
+    }
+
+    getApiSignature(query=''):string{
+        return this.auth.buildSignature(query,this._secret)
     }
 
     /*
@@ -40,12 +45,13 @@ export class PayRexx {
         let queryParams:any  = {};
 
         queryParams.instance     = this._instance;
-        queryParams.ApiSignature = this.auth.buildSignature('',this._secret);
+        queryParams.ApiSignature = this.getApiSignature();
 
-        return     axios.get (this.getEndPoint()+'SignatureCheck/?'+this.auth.buildUrl(queryParams), {})
+        return axios.get (this.getEndPoint()+'SignatureCheck/?'+this.auth.buildUrl(queryParams), {})
             .then(result=> (result.data.status))
             .catch(err=> console.log(err))
     }
+
 
 }
 
