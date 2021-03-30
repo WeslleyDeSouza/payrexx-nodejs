@@ -1,5 +1,6 @@
-import {PayRexx} from "../index";
-// Testet 04.06.2020
+import PayRexx from "../index";
+
+// Tested 04.06.2020
 (async ()=>{
     const auth = require('./credentials.json');
 
