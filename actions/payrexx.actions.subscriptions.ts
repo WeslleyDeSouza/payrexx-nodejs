@@ -35,6 +35,37 @@ interface ISubscription {
     ApiSignature?:any
 }
 
+interface ISubscriptionResponse {
+    "id": number,
+    "status": string,
+    "start": string,
+    "end": boolean,
+    "valid_until": string,
+    "invoice": {
+        "number": string,
+        "amount": number,
+        "currency": string,
+        "referenceId": string,
+        "paymentRequestId": any,
+        "paymentLink": string
+    },
+    "contact": {
+        "id": number,
+        "title": string,
+        "firstname": string,
+        "lastname": string,
+        "company": string,
+        "street": string,
+        "zip": string,
+        "place": string,
+        "country": string,
+        "countryISO": string,
+        "phone": string,
+        "email": string,
+        "date_of_birth": string
+    }
+}
+
 /**
  * This class represents all Subscriptions Actions
  * https://developers.payrexx.com/reference#autologin
@@ -54,27 +85,27 @@ export class SubscriptionsActions extends PayrexxActions{
             params['ApiSignature'] = this.rex.auth.buildSignature(qs.stringify(params));
 
         return   axios.post (this.getEndPoint(),qs.stringify(params))
-            .then(response=> this.successHandler(response,'get'))
+            .then(response=> this.successHandler(response,'get',0))
             .catch(err => this.errorHandler(err));
     }
 
-    get(id:number){
+    get(id:number):Promise<ISubscriptionResponse>{
         let params = {}
         params['ApiSignature'] = this.rex.auth.buildSignature('')
 
         return   axios.get (this.getEndPoint(`${id}/`)+'&'+qs.stringify(params))
-            .then(response=> this.successHandler(response,'get'))
+            .then(response=> this.successHandler(response,'get',0))
             .catch(err => this.errorHandler(err));
     }
 
-    create(params:ISubscription):Promise<any[]>{
+    create(params:ISubscription):Promise<ISubscriptionResponse>{
 
         let data             =  qs.stringify(params);
         params.ApiSignature  = this.rex.auth.buildSignature(data);
         data                 = qs.stringify(params);
 
         return   axios.post (this.getEndPoint(),  data)
-            .then(response=>this.successHandler(response,'create'))
+            .then(response=>this.successHandler(response,'create',0))
             .catch(err=> this.errorHandler(err))
 
     }
