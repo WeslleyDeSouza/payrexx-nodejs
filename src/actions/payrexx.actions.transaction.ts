@@ -21,7 +21,7 @@ export class TransactionActions extends PayrexxActions<any, any> {
     params["ApiSignature"] = this.rex.auth.buildSignature("");
     return axios
       .get(this.getEndPoint(`${single ? id : ""}/`) + "&" + stringify(params))
-      .then((response) => this.successHandler(response, "get"))
+      .then((response) => this.successHandler(response, "get" ,single ? 0 : undefined))
       .catch((err) => this.errorHandler(err));
   }
 
@@ -36,7 +36,7 @@ export class TransactionActions extends PayrexxActions<any, any> {
     params["ApiSignature"] = this.rex.auth.buildSignature("");
     return axios
       .post(this.getEndPoint(`${id}/capture`), { data: stringify(params) })
-      .then((response) => this.successHandler(response, "create"))
+      .then((response) => this.successHandler(response, "create",0))
       .catch((err) => this.errorHandler(err));
   }
 
@@ -47,7 +47,7 @@ export class TransactionActions extends PayrexxActions<any, any> {
 
     return axios
       .post(this.getEndPoint(), data)
-      .then((response) => this.successHandler(response, "create"))
+      .then((response) => this.successHandler(response, "create",0))
       .catch((err) => this.errorHandler(err));
   }
 
@@ -55,7 +55,7 @@ export class TransactionActions extends PayrexxActions<any, any> {
     params["ApiSignature"] = this.rex.auth.buildSignature("");
     return axios
       .post(this.getEndPoint(`${id}/refund`), { data: stringify(params) })
-      .then((response) => this.successHandler(response, "create"))
+      .then((response) => this.successHandler(response, "create",0))
       .catch((err) => this.errorHandler(err));
   }
 
