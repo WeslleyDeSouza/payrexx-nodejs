@@ -1,7 +1,8 @@
 import PayRexx from "../index";
+
 const auth = require('./credentials.json');
 
-(async (payrexx)=>{
+(async (payrexx) => {
 
     const {id} = await payrexx.gateway.create({
         "amount": 8925,
@@ -11,10 +12,10 @@ const auth = require('./credentials.json');
         "preAuthorization": false,
         "reservation": 0,
         "successRedirectUrl": "https://www.merchant-website.com/success",
-        "failedRedirectUrl":  "https://www.merchant-website.com/failed"
+        "failedRedirectUrl": "https://www.merchant-website.com/failed"
     });
 
-    console.log('gatewayId',id)
+    console.log('gatewayId', id)
     console.log('-----------------------------------------');
 
     const _get = await payrexx.gateway.get(id)
@@ -26,4 +27,4 @@ const auth = require('./credentials.json');
 
 
 })
-    (new PayRexx( auth.instance, auth.secret));
+(new PayRexx(auth.instance, auth.secret));

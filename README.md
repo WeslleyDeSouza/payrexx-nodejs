@@ -1,8 +1,10 @@
 # Payrexx NodeJS SDK
+
 Payrexx NodeJS/TS API Wrapper
 https://github.com/WeslleyDeSouza/payrexx-nodejs
 
 ## 📦 Installation
+
 <code>
    NPM: npm i --save payrexx@latest
 </code>
@@ -11,8 +13,8 @@ https://github.com/WeslleyDeSouza/payrexx-nodejs
    YARN: yarn add payrexx
 </code>
 
-
 ## 🔁 Transpile TS to JS
+
 <code>
  tsc
 </code>
@@ -20,34 +22,38 @@ https://github.com/WeslleyDeSouza/payrexx-nodejs
 ## 🔨 Implemented
 
 #### Signature
+
 - checkSignature ✔️
 
-
 #### Paylink
-- get     ✔️
-- create  ✔️
-- delete  ✔️
+
+- get ✔️
+- create ✔️
+- delete ✔️
 
 #### Gateway
-- get     ✔️
-- create  ✔️
-- delete  ✔️
+
+- get ✔️
+- create ✔️
+- delete ✔️
 
 #### Subscriptions
-- login   ✔️
-- create  ✔️
-- update  ✔️
-- delete  ✔️
+
+- login ✔️
+- create ✔️
+- update ✔️
+- delete ✔️
 
 #### Transactions
-- get     🔨
-- charge  🔨
-- refund  🔨
-- create  🔨
+
+- get 🔨
+- charge 🔨
+- refund 🔨
+- create 🔨
 
 #### Documentation
-For further information, please refer to the official REST API reference: https://developers.payrexx.com/v1.0/reference
 
+For further information, please refer to the official REST API reference: https://developers.payrexx.com/v1.0/reference
 
 #### Examples
 
@@ -59,7 +65,7 @@ For further information, please refer to the official REST API reference: https:
 
 <code>
        const PayRexx = require('payrexx');
-   
+
        let PAYR = new PayRexx( auth.instance, auth.secret);
    
        const payment = await PAYR.paylink.create({
