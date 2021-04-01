@@ -1,6 +1,6 @@
 import PayRexx from "../index";
 import { DeleteResponse, PayrexxActions } from "./payrexx.actions";
-import { payrexxCurrency } from "./payrexx.currency";
+import {payrexxTypesCurrency} from "../types/payrexx.types.currency";
 
 const qs = require("qs");
 const axios = require("axios");
@@ -28,7 +28,7 @@ export interface IPayCreation {
   vatRate: number;
   //VAT rate percentage (double)
 
-  currency: payrexxCurrency;
+  currency: payrexxTypesCurrency;
   //The currency of the payment.
 
   sku?: string;
@@ -106,7 +106,7 @@ export class Payment implements IPayLinkResponse {
   amount: number;
   api: boolean;
   createdAt: number;
-  currency: payrexxCurrency;
+  currency: payrexxTypesCurrency;
   fields: IPayLinkResponseFields;
   hash: string;
   id: number;

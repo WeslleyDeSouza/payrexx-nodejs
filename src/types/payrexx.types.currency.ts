@@ -1,6 +1,9 @@
-// https://support.payrexx.com/en/support/solutions/articles/1000183312--which-currencies-can-be-accepted-in-payrexx-
-
-export type payrexxCurrency =
+/**
+ * currencies
+ * https://support.payrexx.com/en/support/solutions/articles/1000183312--which-currencies-can-be-accepted-in-payrexx-
+ * Author@2021 https://github.com/Xample
+ * */
+export type payrexxTypesCurrency =
   | "USD"
   | "AED"
   | "AFN"
