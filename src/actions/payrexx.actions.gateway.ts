@@ -1,5 +1,6 @@
 import PayRexx from "../index";
 import { DeleteResponse, PayrexxActions } from "./payrexx.actions";
+import { payrexxCurrency } from './payrexx.currency';
 
 const axios = require('axios');
 const qs = require('qs');
@@ -12,7 +13,7 @@ export interface IGatewayCreate {
     vatRate?:number
     //VAT Rate Percentage
 
-    currency:string
+    currency:payrexxCurrency
     //Currency of payment (ISO code).
 
     sku?:string
@@ -122,7 +123,7 @@ export class Gateway implements IGatewayResponse {
 
     amount:number;
     createdAt:number;
-    currency:string;
+    currency:payrexxCurrency;
     fields:IGatewayResponseFields;
     hash:string;
     id:number;

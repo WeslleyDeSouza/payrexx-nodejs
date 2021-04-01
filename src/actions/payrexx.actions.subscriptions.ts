@@ -1,5 +1,6 @@
 import PayRexx from "../index";
 import { PayrexxActions } from "./payrexx.actions";
+import { payrexxCurrency } from './payrexx.currency';
 
 const axios = require('axios');
 const qs = require('qs');
@@ -15,7 +16,7 @@ export interface ISubscription {
     amount:string
     //The amount of the payment to fire in cents.
 
-    currency:string
+    currency:payrexxCurrency
     //The ISO code of the currency of the payment.
 
     purpose:string
