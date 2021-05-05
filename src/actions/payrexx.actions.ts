@@ -38,7 +38,8 @@ export abstract class PayrexxActions<Input, Response> {
     typ: "get" | "create" | "delete" = null
   ) {
     if (response) {
-      console.log(response.response.data);
+      // todo log only on verbose/debug mode
+      console.log(response.response ? response.response.data: response);
     }
     return undefined;
   }

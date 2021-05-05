@@ -8,7 +8,7 @@ const hmacSHA256 = require("crypto-js/hmac-sha256");
 export class AuthHelper {
   constructor(private _instance, private _secret) {}
 
-  buildSignature(
+  public buildSignature(
     query: any,
     secret: string = this._secret,
     digTo: string = "base64"
@@ -16,7 +16,7 @@ export class AuthHelper {
     return Base64.stringify(hmacSHA256(query, secret));
   }
 
-  buildUrl(json: any, qUri: string = "", escape: boolean = false) {
+  public buildUrl(json: any, qUri: string = "", escape: boolean = false) {
     for (const key in json) {
       qUri += escape
         ? encodeURI(`${key}=${json[key]}&`)
@@ -25,10 +25,11 @@ export class AuthHelper {
     return qUri.substr(0, qUri.length - 1);
   }
 
-  getCredential() {
+  public getCredential() {
     return {
       instance: this._instance,
       secret: this._secret,
     };
   }
+
 }

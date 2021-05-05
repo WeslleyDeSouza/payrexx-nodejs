@@ -1,6 +1,7 @@
 import PayRexx from "../index";
 import { PayrexxActions } from "./payrexx.actions";
-import { payrexxCurrency } from "./payrexx.currency";
+import {payrexxTypesCurrency} from "../types/payrexx.types.currency";
+
 
 const axios = require("axios");
 const qs = require("qs");
@@ -15,7 +16,7 @@ export interface ISubscription {
   amount: string;
   //The amount of the payment to fire in cents.
 
-  currency: payrexxCurrency;
+  currency: payrexxTypesCurrency;
   //The ISO code of the currency of the payment.
 
   purpose: string;
@@ -118,7 +119,7 @@ export class SubscriptionsActions extends PayrexxActions<
     return data;
   }
 
-  private getEndPoint(path = "") {
+  private getEndPoint(path = ""):string {
     return `${this.rex.getEndPoint()}AuthToken/${path}?${this.rex.auth.buildUrl(
       {
         instance: this.rex.auth.getCredential().instance,
