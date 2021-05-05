@@ -50,7 +50,7 @@ export interface IGatewayCreate {
   referenceId?: string;
   //An internal reference id used by your system.
 
-  fields?: string;
+  fields?: any;
   //The contact data fields which should be stored along with payment
 
   concardisOrderId?: string;
