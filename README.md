@@ -13,12 +13,6 @@ https://github.com/WeslleyDeSouza/payrexx-nodejs
    YARN: yarn add payrexx
 </code>
 
-## 🔁 Transpile TS to JS
-
-<code>
- tsc
-</code>
-
 
 #### Documentation
 
