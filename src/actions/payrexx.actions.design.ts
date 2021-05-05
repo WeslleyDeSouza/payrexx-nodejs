@@ -91,6 +91,74 @@ class Design {
 
   VPOSBackgroundImage?: any
   //CURLFile object
+
+  constructor(e = null) {
+
+  }
+
+  public setDefault(value:boolean){
+    this.default = value ? 1 : 0;
+  }
+  public setName(name:string){
+    this.name = name
+  };
+  public setHeaderImageShape(headerImageShape: 'square' | 'rectangular' | 'round'){
+    this.headerBackgroundImage = headerImageShape
+  };
+  public setLogoBackgroundColor(val:string){
+    this.logoBackgroundColor = val
+  }
+  public setLogoBorderColor(val:string){
+    this.logoBorderColor = val;
+}; // Hex code
+  public setBackground(val:string){
+    this.background = val;
+  }; // color or image
+  public setBackgroundColor(val:string){
+    this.backgroundColor = val
+  }; // Hex code
+  public setHeaderBackground(val:string){
+
+  }; // color or image
+  public setHeaderBackgroundColor(val:string){
+
+  }; // Hex code
+  public setVPOSGradientColor1(val:string){
+
+  }; // Hex code
+  public setVPOSGradientColor2(val:string){
+
+  }; // Hex code
+  public setFontFamily(val:string){
+    this.fontFamily = val;
+  };
+  public setFontSize(val: any){
+    this.fontSize = val;
+  };
+  public setTextColor(val:string){
+    this.textColor = val
+  };
+  public setTextColorVPOS(val:string){
+    this.textColorVPOS = val;
+  };
+  public setLinkColor(val:string){
+    this.linkColor = val
+  };
+  public setLinkHoverColor(val:string){
+    this.linkHoverColor = val
+  };
+  public setButtonColor(val:string){
+    this.buttonHoverColor = val;
+  };
+  public setButtonHoverColor(val:string){
+    this.buttonHoverColor = val;
+  };
+  public setEnableRoundedCorners(val:boolean){
+    this.enableRoundedCorners = val ? 1 :0;
+};
+  public setUseIndividualEmailLogo(val:boolean) {
+  this.useIndividualEmailLogo = val ? 1 : 0;
+  };
 }
 
 interface IDesignResponse {
@@ -138,17 +206,23 @@ export class DesignActions extends PayrexxActions<any, IDesignResponse> {
     super();
   }
 
+  instance(params = {}):Design{
+    return  new Design(params);
+  }
+
   get(id: number): Promise<IDesignResponse> {
     throw new Error("Method not implemented.");
   }
+
   create(params: any): Promise<IDesignResponse> {
     throw new Error("Method not implemented.");
   }
+
   delete(id: number): Promise<DeleteResponse<identified>> {
     throw new Error("Method not implemented.");
   }
 
-  private getEndPoint(path = "") {
+  private getEndPoint(path = ""):string {
     return `${this.rex.getEndPoint()}Design/${path}?${this.rex.auth.buildUrl({
       instance: this.rex.auth.getCredential().instance,
     })}`;
