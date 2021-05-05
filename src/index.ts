@@ -4,16 +4,21 @@ import { AuthHelper } from "./auth/payrexx.auth";
 import { PayLinkActions } from "./actions/payrexx.actions.payment";
 import { GatewayActions } from "./actions/payrexx.actions.gateway";
 import { SubscriptionsActions } from "./actions/payrexx.actions.subscriptions";
+import {DesignActions} from "./actions/payrexx.actions.design";
 
 export class PayRexx {
+
   public auth: AuthHelper = new AuthHelper(this._instance, this._secret);
+
   /**
    * Actions
    * */
-  public paylink: PayLinkActions = new PayLinkActions(this);
-  public gateway: GatewayActions = new GatewayActions(this);
-  public subscriptions: SubscriptionsActions = new SubscriptionsActions(this);
-  private endPoint;
+  public paylink: PayLinkActions              = new PayLinkActions(this);
+  public gateway: GatewayActions              = new GatewayActions(this);
+  public subscriptions: SubscriptionsActions  = new SubscriptionsActions(this);
+  public design:DesignActions                 = new DesignActions(this);
+
+  private endPoint:string;
 
   constructor(private _instance, private _secret, private _v = "v1.0") {
     this.endPoint = `https://api.payrexx.com/${_v}/`;
