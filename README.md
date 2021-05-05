@@ -19,37 +19,6 @@ https://github.com/WeslleyDeSouza/payrexx-nodejs
  tsc
 </code>
 
-## 🔨 Implemented
-
-#### Signature
-
-- checkSignature ✔️
-
-#### Paylink
-
-- get ✔️
-- create ✔️
-- delete ✔️
-
-#### Gateway
-
-- get ✔️
-- create ✔️
-- delete ✔️
-
-#### Subscriptions
-
-- login ✔️
-- create ✔️
-- update ✔️
-- delete ✔️
-
-#### Transactions
-
-- get 🔨
-- charge 🔨
-- refund 🔨
-- create 🔨
 
 #### Documentation
 
