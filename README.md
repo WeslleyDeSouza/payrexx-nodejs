@@ -13,43 +13,6 @@ https://github.com/WeslleyDeSouza/payrexx-nodejs
    YARN: yarn add payrexx
 </code>
 
-## 🔁 Transpile TS to JS
-
-<code>
- tsc
-</code>
-
-## 🔨 Implemented
-
-#### Signature
-
-- checkSignature ✔️
-
-#### Paylink
-
-- get ✔️
-- create ✔️
-- delete ✔️
-
-#### Gateway
-
-- get ✔️
-- create ✔️
-- delete ✔️
-
-#### Subscriptions
-
-- login ✔️
-- create ✔️
-- update ✔️
-- delete ✔️
-
-#### Transactions
-
-- get 🔨
-- charge 🔨
-- refund 🔨
-- create 🔨
 
 #### Documentation
 
