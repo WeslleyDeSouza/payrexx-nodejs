@@ -8,7 +8,7 @@ https://github.com/WeslleyDeSouza/payrexx-nodejs
 <code>
    NPM: npm i --save payrexx@latest
 </code>
-<br>
+<br><br>
 <code>
    YARN: yarn add payrexx
 </code>
