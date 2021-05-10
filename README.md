@@ -29,7 +29,8 @@ For further information, please refer to the official REST API reference: https:
        const PayRexx = require('payrexx');
 
        let PAYR = new PayRexx( auth.instance, auth.secret);
-
+        
+       # Create PaymentLink
        const payment = await PAYR.paylink.create({
            "title":       "Item_423",
            "description": "Product_Selling_XY",
@@ -48,10 +49,12 @@ For further information, please refer to the official REST API reference: https:
        console.log('PAYR.payment',payment.id)
        console.log('-----------------------------------------');
 
-       const _get = await PAYR.payment.get(payment.id)
-       console.log(_get)
+       # Load PaymentLink
+       const pay2 = await PAYR.payment.get(payment.id)
+       console.log(pay2)
        console.log('-----------------------------------------');
 
+       # delete created PaymentLink
        const _delete = await payment.delete()
        console.log(_delete.status);
 
