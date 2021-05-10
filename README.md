@@ -46,17 +46,14 @@ For further information, please refer to the official REST API reference: https:
        });
 
 
-       console.log('PAYR.payment',payment.id)
-       console.log('-----------------------------------------');
+
 
        # Load PaymentLink
        const pay2 = await PAYR.payment.get(payment.id)
-       console.log(pay2)
-       console.log('-----------------------------------------');
 
        # delete created PaymentLink
        const _delete = await payment.delete()
-       console.log(_delete.status);
+
 
 </pre>
 
@@ -74,16 +71,5 @@ For further information, please refer to the official REST API reference: https:
         "successRedirectUrl": "https://www.merchant-website.com/success",
         "failedRedirectUrl":  "https://www.merchant-website.com/failed"
     });
-
-
-    console.log('PAYR.gateway',gateway.id)
-    console.log('-----------------------------------------');
-
-    const _get = await PAYR.gateway.get(gateway.id)
-    console.log(_get)
-    console.log('-----------------------------------------');
-
-    const _delete = await PAYR.gateway.delete(gateway.id)
-    console.log(_delete.status);
 
 </pre>
