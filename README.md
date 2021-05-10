@@ -26,7 +26,7 @@ For further information, please refer to the official REST API reference: https:
 
 - Paylink:
 
-<code>
+<pre>
        const PayRexx = require('payrexx');
 
        let PAYR = new PayRexx( auth.instance, auth.secret);
@@ -56,11 +56,11 @@ For further information, please refer to the official REST API reference: https:
        const _delete = await PAYR.payment.delete(payment.id)
        console.log(_delete.status);
 
-</code>
+</pre>
 
 - Gateway:
 
-<code>
+<pre>
     let PAYR = new PayRexx( auth.instance, auth.secret);
 
     const gateway = await PAYR.gateway.create({
@@ -85,4 +85,4 @@ For further information, please refer to the official REST API reference: https:
     const _delete = await PAYR.gateway.delete(gateway.id)
     console.log(_delete.status);
 
-</code>
+</pre>
