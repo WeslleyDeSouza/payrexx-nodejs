@@ -46,8 +46,6 @@ For further information, please refer to the official REST API reference: https:
        });
 
 
-
-
        # Load PaymentLink
        const pay2 = await PAYR.payment.get(payment.id)
 
