@@ -24,8 +24,7 @@ For further information, please refer to the official REST API reference: https:
   import PayRexx from "payrexx";
 </code>
 
-- Paylink:
-
+### Paylink:
 <pre>
        const PayRexx = require('payrexx');
 
@@ -58,8 +57,7 @@ For further information, please refer to the official REST API reference: https:
 
 </pre>
 
-- Gateway:
-
+###Gateway:
 <pre>
     let PAYR = new PayRexx( auth.instance, auth.secret);
 
