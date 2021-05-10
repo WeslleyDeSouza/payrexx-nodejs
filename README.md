@@ -52,7 +52,7 @@ For further information, please refer to the official REST API reference: https:
        console.log(_get)
        console.log('-----------------------------------------');
 
-       const _delete = await PAYR.payment.delete(payment.id)
+       const _delete = await payment.delete()
        console.log(_delete.status);
 
 </pre>
