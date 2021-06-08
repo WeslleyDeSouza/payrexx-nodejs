@@ -47,10 +47,10 @@ For further information, please refer to the official REST API reference: https:
 
 
        # Load PaymentLink
-       const pay2 = await PAYR.payment.get(payment.id)
+       await PAYR.payment.get(payment.id)
 
        # delete created PaymentLink
-       const _delete = await payment.delete()
+       await payment.delete()
 
 
 </pre>
